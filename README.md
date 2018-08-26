@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ghineaion/TEfy.svg?branch=master)](https://travis-ci.org/ghineaion/TEfy)
 # TEfy
 TEfy was born out of the need to streamline the conversion of *.doc, 
 *.docx and *.odt documents into TEI XML when using Python scripts.
