@@ -1,5 +1,7 @@
 build
 dist
+*.egg
+*.egg-info
 .pytest_cache
 .cache
 .idea
