@@ -23,6 +23,20 @@ class OxGaWrap(object):
             'xmlteip5': 'TEI%3Atext%3Axml/xml%3Aapplication%3Axml',
         }
 
+        self.properties = '/conversion?properties=<conversions><conversion index="0"></conversion>' \
+                          '<conversion index="1">' \
+                          '<property id="oxgarage.getImages">false</property>' \
+                          '<property id="oxgarage.getOnlineImages">false</property>' \
+                          '<property id="oxgarage.lang">en</property>' \
+                          '<property id="oxgarage.textOnly">true</property>' \
+                          '<property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion>' \
+                          '<conversion index="2"><property id="oxgarage.getImages">false</property>' \
+                          '<property id="oxgarage.getOnlineImages">false</property>' \
+                          '<property id="oxgarage.lang">en</property>' \
+                          '<property id="oxgarage.textOnly">true</property>' \
+                          '<property id="pl.psnc.dl.ege.tei.profileNames">default</property>' \
+                          '</conversion></conversions>'
+
         self.path = path
         self.format = path.split('.')[-1]
         if self.format not in self.conversion_codes['in']:
@@ -38,6 +52,7 @@ class OxGaWrap(object):
         :return: None
         """
         url = '/'.join([self.req_baseurl, self.conversion_codes['in'][self.format], self.conversion_codes['xmlteip5']])
+        url += self.properties
         files = {'upload_file': open(self.path, 'rb')}
         self.response = requests.post(url, files=files)
         self.et_output = etree.fromstring(self.response.content)
