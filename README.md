@@ -18,3 +18,5 @@ example_file.convert_to_tei()
 etree_object = example_file.get_et_output()
 ```
 
+## Feedback
+I'm an amateur pythonista and this is just one of my clumsy baby steps, so any feedback on how to improve TEfy is **very** welcome!
