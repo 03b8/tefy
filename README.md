@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/03b8/TEfy.svg?branch=master)](https://travis-ci.org/03b8/TEfy)
+[![PyPI version](https://badge.fury.io/py/TEfy.svg)](https://badge.fury.io/py/TEfy)
 # TEfy
 TEfy was born out of the need to streamline the conversion of *.doc, 
 *.docx and *.odt documents into TEI XML when using Python scripts.
