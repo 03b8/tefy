@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
     setuptools.setup(
             name="TEfy",
-            version="0.1.2",
+            version="0.1.3",
             author="Theo Costea",
             author_email="theo.costea@gmail.com",
             description="A very basic wrapper for conversions from doc, docx and odt to TEI XML",
