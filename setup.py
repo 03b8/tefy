@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
     setuptools.setup(
             name="TEfy",
-            version="0.1.1",
+            version="0.1.2",
             author="Theo Costea",
             author_email="theo.costea@gmail.com",
             description="A very basic wrapper for conversions from doc, docx and odt to TEI XML",
             long_description=long_description,
             long_description_content_type="text/markdown",
-            url="https://github.com/ghineaion/tefy",
+            url="https://github.com/03b8/tefy",
             packages=setuptools.find_packages(),
             classifiers=[
                 "Programming Language :: Python :: 3.5",
