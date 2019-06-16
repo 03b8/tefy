@@ -41,8 +41,8 @@ class OxGaWrap(object):
         self.format = path.split('.')[-1]
         if self.format not in self.convcodes['in']:
             self.format = None
-            raise ValueError('Unknown input format. Expected one of the following: {}.'
-                             .format(', '.join(self.conversion_codes['in'])))
+            codekeys = ', '.join(self.convcodes['in'])
+            raise ValueError(f'Unknown input format. Expected one of the following: {codekeys}.')
 
     def convert_to_tei(self):
         """
