@@ -13,8 +13,7 @@ class OxGaWrap(object):
 
         self.response = None
         self.et_output = None
-        self.req_baseurl = 'http://oxgarage.tei-c.org/ege-webservice//Conversions'
-        self.conversion_codes = {
+        self.req_baseurl = 'https://oxgarage.tei-c.org/ege-webservice/Conversions/'
             'in': {
                 'odt': 'odt%3Aapplication%3Avnd.oasis.opendocument.text',
                 'doc': 'doc%3Aapplication%3Amsword/odt%3Aapplication%3Avnd.oasis.opendocument.text',
