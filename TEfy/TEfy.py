@@ -23,19 +23,19 @@ class OxGaWrap(object):
             'xmlteip5': 'TEI%3Atext%3Axml/',
         }
 
-        self.properties = '/conversion?properties=<conversions><conversion index="0"></conversion>' \
-                          '<conversion index="1">' \
-                          '<property id="oxgarage.getImages">false</property>' \
-                          '<property id="oxgarage.getOnlineImages">false</property>' \
-                          '<property id="oxgarage.lang">en</property>' \
-                          '<property id="oxgarage.textOnly">true</property>' \
-                          '<property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion>' \
-                          '<conversion index="2"><property id="oxgarage.getImages">false</property>' \
-                          '<property id="oxgarage.getOnlineImages">false</property>' \
-                          '<property id="oxgarage.lang">en</property>' \
-                          '<property id="oxgarage.textOnly">true</property>' \
-                          '<property id="pl.psnc.dl.ege.tei.profileNames">default</property>' \
-                          '</conversion></conversions>'
+        self.params = {'properties': '<conversions><conversion index="0"></conversion>'
+                       '<conversion index="1">'
+                       '<property id="oxgarage.getImages">false</property>'
+                       '<property id="oxgarage.getOnlineImages">false</property>'
+                       '<property id="oxgarage.lang">en</property>'
+                       '<property id="oxgarage.textOnly">true</property>'
+                       '<property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion>'
+                       '<conversion index="2"><property id="oxgarage.getImages">false</property>'
+                       '<property id="oxgarage.getOnlineImages">false</property>'
+                       '<property id="oxgarage.lang">en</property>'
+                       '<property id="oxgarage.textOnly">true</property>'
+                       '<property id="pl.psnc.dl.ege.tei.profileNames">default</property>'
+                       '</conversion></conversions>'}
 
         self.path = path
         self.format = path.split('.')[-1]
@@ -56,7 +56,7 @@ class OxGaWrap(object):
               self.convcodes['xmlteip5']
 
         files = {'upload_file': open(self.path, 'rb')}
-        self.response = requests.post(url, files=files)
+        self.response = requests.post(url, files=files, params=self.params)
         self.et_output = etree.fromstring(self.response.content)
 
     def get_et_output(self):
