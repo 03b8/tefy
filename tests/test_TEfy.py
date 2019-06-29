@@ -1,5 +1,7 @@
-from TEfy import OxGaWrap
+from TEfy import OxGaWrap, __version__
 
+def test_version():
+    assert __version__ == '0.1.3'
 
 def make_req(srcf):
     """

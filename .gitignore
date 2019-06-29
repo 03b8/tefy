@@ -4,5 +4,4 @@ dist
 *.egg-info
 .pytest_cache
 .cache
-.idea
 *.pyc
