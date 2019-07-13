@@ -6,15 +6,14 @@ class OxGaWrap(object):
     """
     Very basic wrapper for a small subset of OxGarage conversions, one-way from doc/docx/odt to TEI XML.
     """
-    def __init__(self, path):
+    def __init__(self, path, lang='en'):
         """
         :param path: path to file to be converted
+        :param lang: value of the oxgarage.lang conversion property
         """
-
         self.response = None
-        self.et_output = None
-        self.req_baseurl = 'https://oxgarage.tei-c.org/ege-webservice/Conversions/'
-        self.convcodes = {
+        self._req_baseurl = 'https://oxgarage.tei-c.org/ege-webservice/Conversions/'
+        self._convcodes = {
             'in': {
                 'odt': 'odt%3Aapplication%3Avnd.oasis.opendocument.text/',
                 'doc': 'doc%3Aapplication%3Amsword/odt%3Aapplication%3Avnd.oasis.opendocument.text/',
@@ -22,46 +21,39 @@ class OxGaWrap(object):
             },
             'xmlteip5': 'TEI%3Atext%3Axml/',
         }
-
-        self.params = {'properties': '<conversions><conversion index="0"></conversion>'
-                       '<conversion index="1">'
-                       '<property id="oxgarage.getImages">false</property>'
-                       '<property id="oxgarage.getOnlineImages">false</property>'
-                       '<property id="oxgarage.lang">en</property>'
-                       '<property id="oxgarage.textOnly">true</property>'
-                       '<property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion>'
-                       '<conversion index="2"><property id="oxgarage.getImages">false</property>'
-                       '<property id="oxgarage.getOnlineImages">false</property>'
-                       '<property id="oxgarage.lang">en</property>'
-                       '<property id="oxgarage.textOnly">true</property>'
-                       '<property id="pl.psnc.dl.ege.tei.profileNames">default</property>'
-                       '</conversion></conversions>'}
-
+        self._params = {'properties': '<conversions><conversion index="0">'
+                                      f'<property id="oxgarage.lang">{lang}</property>'
+                                      '</conversion></conversions>'}
         self.path = path
         self.format = path.split('.')[-1]
-        if self.format not in self.convcodes['in']:
+        if self.format not in self._convcodes['in']:
             self.format = None
-            codekeys = ', '.join(self.convcodes['in'])
+            codekeys = ', '.join(self._convcodes['in'])
             raise ValueError(f'Unknown input format. Expected one of the following: {codekeys}.')
 
-    def convert_to_tei(self):
+    def _request_conversion(self):
         """
         Requests the conversion of the file to TEI P5 XML.
-        Saves status code to parameters.
-        Saves output as lxml etree Element.
-        :return: None
+        :return: requests.Response
         """
-        url = self.req_baseurl + \
-              self.convcodes['in'][self.format] + \
-              self.convcodes['xmlteip5']
-
+        url = self._req_baseurl + self._convcodes['in'][self.format] + self._convcodes['xmlteip5']
         files = {'upload_file': open(self.path, 'rb')}
-        self.response = requests.post(url, files=files, params=self.params)
-        self.et_output = etree.fromstring(self.response.content)
+        response = requests.post(url, files=files, params=self._params)
+        if response.status_code == 200:
+            return response
+        else:
+            response.raise_for_status()
+
+    @property
+    def tei_xml(self):
+        """
+        Get TEI XML document as etree.Element
+        """
+        self.response = self._request_conversion()
+        return etree.fromstring(self.response.content)
+
+    def convert_to_tei(self):
+        raise DeprecationWarning('This method has become redundant and can be removed where used.')
 
     def get_et_output(self):
-        """
-        Returns document as etree Element after conversion to TEI XML.
-        :return: TEI XML document as lxml etree Element or None if no conversion has taken place
-        """
-        return self.et_output
+        raise DeprecationWarning('This method has been replaced by the "tei_xml" property.')

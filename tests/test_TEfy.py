@@ -1,17 +1,8 @@
 from TEfy import OxGaWrap, __version__
 
+
 def test_version():
     assert __version__ == '0.1.3'
-
-def make_req(srcf):
-    """
-    Makes conversion request and returns HTTP status code
-    :param srcf: source format
-    :return: HTTP status code
-    """
-    oxobj = OxGaWrap('tests/in/test.{}'.format(srcf))
-    oxobj.convert_to_tei()
-    return oxobj.response.status_code
 
 
 def get_tag_list(frmt):
@@ -20,25 +11,10 @@ def get_tag_list(frmt):
     :param frmt: format/extension of the input document (document must be present in the tests/in folder)
     :return: list of element tags
     """
-    oxobj = OxGaWrap('tests/in/test.{}'.format(frmt))
-    oxobj.convert_to_tei()
-    tree = oxobj.get_et_output()
+    oxobj = OxGaWrap(f'tests/in/test.{frmt}')
+    tree = oxobj.tei_xml
     elems = [el.tag for el in tree.xpath('//*')]
     return elems
-
-
-# Test conversion requests from all source file formats to all target formats by asserting HTTP 200 status codes
-
-def test_doc2xml():
-    assert make_req('doc') == 200
-
-
-def test_docx2xml():
-    assert make_req('docx') == 200
-
-
-def test_odt2xml():
-    assert make_req('odt') == 200
 
 
 # Test TEI XML output for each format by comparing a list of all element tags in document with a list of expected tags
