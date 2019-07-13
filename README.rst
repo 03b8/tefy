@@ -1,9 +1,9 @@
-TEfy
+tefy
 ====
 
 |Build Status| |PyPI version| 
 
-``TEfy`` was born out of the need to streamline the conversion of doc,
+``tefy`` was born out of the need to streamline the conversion of doc,
 docx and odt documents into TEI XML when using Python scripts. It's a
 very basic wrapper around the OxGarage_
 API at https://oxgarage.tei-c.org/ege-webservice/ and
@@ -15,7 +15,7 @@ XML. The conversion result is output as an lxml_ etree Element.
 
 Usage 
 -----
-You can install TEfy with pip (``$ pip install TEfy``) 
+You can install `tefy` with pip (``$ pip install tefy``) 
 and convert let's say an ODT document like this:
 
 .. code:: python
@@ -24,7 +24,7 @@ and convert let's say an ODT document like this:
     doc = OxGaWrap('path/to/example.odt')
     tei = doc.tei_xml
 
-.. |Build Status| image:: https://travis-ci.org/03b8/TEfy.svg?branch=master
-   :target: https://travis-ci.org/03b8/TEfy
-.. |PyPI version| image:: https://badge.fury.io/py/TEfy.svg
-   :target: https://badge.fury.io/py/TEfy
+.. |Build Status| image:: https://travis-ci.org/03b8/tefy.svg?branch=master
+   :target: https://travis-ci.org/03b8/tefy
+.. |PyPI version| image:: https://badge.fury.io/py/tefy.svg
+   :target: https://badge.fury.io/py/tefy
