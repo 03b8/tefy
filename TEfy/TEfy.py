@@ -19,8 +19,7 @@ class OxGaWrap(object):
                 'doc': 'doc%3Aapplication%3Amsword/odt%3Aapplication%3Avnd.oasis.opendocument.text/',
                 'docx': 'docx%3Aapplication%3Avnd.openxmlformats-officedocument.wordprocessingml.document/'
             },
-            'xmlteip5': 'TEI%3Atext%3Axml/',
-        }
+            'xmlteip5': 'TEI%3Atext%3Axml/', }
         self._params = {'properties': '<conversions><conversion index="0">'
                                       f'<property id="oxgarage.lang">{lang}</property>'
                                       '</conversion></conversions>'}
@@ -53,7 +52,9 @@ class OxGaWrap(object):
         return etree.fromstring(self.response.content)
 
     def convert_to_tei(self):
-        raise DeprecationWarning('This method has become redundant and can be removed where used.')
+        raise DeprecationWarning('This method has been deprecated and will be removed.')
 
     def get_et_output(self):
-        raise DeprecationWarning('This method has been replaced by the "tei_xml" property.')
+        raise DeprecationWarning('This method has been deprecated and will be removed.'
+                                 'Please use the "tei_xml" property instead.')
+        return self.tei_xml
