@@ -1,8 +1,9 @@
-build
-dist
+build/
+dist/
+.idea/
+*.pyc
 *.egg
 *.egg-info
 .pytest_cache
 .cache
 .python-version
-*.pyc
