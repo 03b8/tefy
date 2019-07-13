@@ -3,7 +3,7 @@
 ## [0.1.4] - 2019-07-13
 
 ### Changed
-- Package name to a PEP compliant all-lowercase name (tefy)
+- Package name to a PEP8 compliant all-lowercase name (tefy)
 
 ### Added
 - Optional OxGarage conversion parameter for language
