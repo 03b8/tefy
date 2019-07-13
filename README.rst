@@ -15,15 +15,14 @@ XML. The conversion result is output as an lxml_ etree Element.
 
 Usage 
 -----
-You can install TEfy from `PyPI <https://pypi.org/project/TEfy/>`__ (``$ pip
-install TEfy``) and convert let's say an ODT document like this:
+You can install TEfy with pip (``$ pip install TEfy``) 
+and convert let's say an ODT document like this:
 
 .. code:: python
 
     from TEfy import OxGaWrap
-    example_file = OxGaWrap('path/to/example.odt')
-    example_file.convert_to_tei()
-    etree_object = example_file.get_et_output()
+    doc = OxGaWrap('path/to/example.odt')
+    tei = doc.tei_xml
 
 .. |Build Status| image:: https://travis-ci.org/03b8/TEfy.svg?branch=master
    :target: https://travis-ci.org/03b8/TEfy
