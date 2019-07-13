@@ -36,12 +36,13 @@ class OxGaWrap(object):
         :return: requests.Response
         """
         url = self._req_baseurl + self._convcodes['in'][self.format] + self._convcodes['xmlteip5']
-        files = {'upload_file': open(self.path, 'rb')}
-        response = requests.post(url, files=files, params=self._params)
-        if response.status_code == 200:
-            return response
-        else:
-            response.raise_for_status()
+        with open(self.path, 'rb') as doc_file:
+            files = {'upload_file': doc_file}
+            response = requests.post(url, files=files, params=self._params)
+            if response.status_code == 200:
+                return response
+            else:
+                response.raise_for_status()
 
     @property
     def tei_xml(self):
