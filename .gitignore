@@ -1,7 +1,7 @@
 build/
 dist/
 .idea/
-*.pyc
+**.pyc
 *.egg
 *.egg-info
 .pytest_cache

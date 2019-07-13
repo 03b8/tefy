@@ -20,7 +20,7 @@ and convert let's say an ODT document like this:
 
 .. code:: python
 
-    from TEfy import OxGaWrap
+    from tefy import OxGaWrap
     doc = OxGaWrap('path/to/example.odt')
     tei = doc.tei_xml
 

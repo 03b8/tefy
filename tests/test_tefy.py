@@ -1,4 +1,4 @@
-from TEfy import OxGaWrap, __version__
+from tefy import OxGaWrap, __version__
 
 
 def test_version():
